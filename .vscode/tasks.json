@@ -1,0 +1,83 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"dependsOrder": "sequence",
+			"dependsOn": ["Remove release", "Prepare release", "Copy README.md to output folder", "Build release", "Zip release"],
+			"label": "Make full release",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		},
+		{
+			"type": "bmx",
+			"make": "application",
+			"source": "${workspaceFolder}/mgv_ap.bmx",
+			"output": "/output/release/mgv_ap",
+			"fullcompile": false,
+			"debug": false,
+			"hidpi": true,
+			"quick": false,
+			"apptype": "gui",
+			"architecture": "x64",
+			"funcargcasting": "warning",
+			"problemMatcher": [
+				"$blitzmax",
+				"$gcc"
+			],
+			"label": "Build release",
+			"group": {
+				"kind": "build",
+				"isDefault": false
+			}
+		},
+		{
+			"type": "shell",
+			"label": "Remove release",
+			"command": "rmdir",
+			"args": [
+				"-Recurse",
+				"-Force",
+				"${workspaceFolder}/output/release"
+			],
+			"group": "none"
+		},
+		{
+			"type": "shell",
+			"label": "Prepare release",
+			"command": "mkdir",
+			"args": [
+				"-Force",
+				"${workspaceFolder}/output/release"
+			],
+			"group": "none"
+		},
+		{
+			"type": "shell",
+			"label": "Copy README.md to output folder",
+			"command": "cp",
+			"args": [
+				"${workspaceFolder}/README.md",
+				"${workspaceFolder}/output/release/README.md"
+			],
+			"group": "none"
+		},
+		{
+			"type": "shell",
+			"label": "Zip release",
+			"command": "powershell",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"Compress-Archive",
+				"-Path",
+				"./output/release/*",
+				"-DestinationPath",
+				"./output/release/mgv_ap.zip"
+			],
+			"group": "none"
+		}
+	]
+}

@@ -1,0 +1,9 @@
+*
+!*/
+!*.*
+.bmx/
+output/
+*.debug
+*.exe
+*.bak
+*~
