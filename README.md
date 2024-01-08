@@ -2,6 +2,8 @@
 
 A simple application for patching the METAL GEAR SURVIVE version 1.18 executable to support a wide range of aspect ratios.
 
+![demo](https://github.com/Hezkore/mgv-aspect-patcher/blob/master/demo.png?raw=true)
+
 ## How to Use
 
 1. Go to the [release page](https://github.com/hezkore/mgv-aspect-patcher/releases) of this repository.
